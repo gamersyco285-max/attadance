@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DEUSI • BHAILO | 7 Day Attendance</title>
+<style>
+:root{--bg:#05030b;--card:rgba(255,255,255,.08);--line:rgba(255,255,255,.14);--gold:#ffd166;--pink:#ff4d8d;--cyan:#56e0ff;--text:#fff;--muted:#c7bfd3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:Inter,system-ui,Arial,sans-serif;color:var(--text);background:
+radial-gradient(circle at 15% 10%,rgba(255,77,141,.22),transparent 28%),
+radial-gradient(circle at 85% 15%,rgba(86,224,255,.18),transparent 25%),
+radial-gradient(circle at 50% 90%,rgba(255,209,102,.14),transparent 30%),var(--bg);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:45px 45px;opacity:.07}
+.wrap{width:min(1100px,92%);margin:auto}
+.hero{min-height:70vh;display:grid;place-items:center;text-align:center;padding:70px 0 35px;position:relative}
+.badge{display:inline-block;padding:8px 15px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);backdrop-filter:blur(12px);color:var(--gold);font-weight:800;letter-spacing:2px;font-size:12px}
+h1{font-size:clamp(48px,10vw,105px);line-height:.86;margin:24px 0 18px;letter-spacing:-5px;text-shadow:0 0 35px rgba(255,77,141,.4)}
+.gradient{background:linear-gradient(90deg,var(--gold),#fff,var(--pink),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:650px;margin:auto;color:var(--muted);font-size:18px;line-height:1.6}
+.lights{display:flex;justify-content:center;gap:8px;margin:28px 0}.lights i{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px currentColor}.lights i:nth-child(2){background:var(--pink)}.lights i:nth-child(3){background:var(--cyan)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px;backdrop-filter:blur(18px);box-shadow:0 25px 70px rgba(0,0,0,.3)}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-bottom:80px}
+h2{margin:0 0 8px;font-size:28px}.sub{color:var(--muted);margin-top:0}
+label{display:block;margin:18px 0 8px;font-weight:800}
+input,select{width:100%;padding:15px;border-radius:15px;border:1px solid var(--line);background:rgba(0,0,0,.25);color:#fff;font-size:16px;outline:none}
+select option{background:#111;color:#fff}
+input:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(86,224,255,.12)}
+.status{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}.status input{display:none}
+.status label{margin:0;padding:16px;border:1px solid var(--line);border-radius:15px;text-align:center;cursor:pointer;background:rgba(255,255,255,.04)}
+.status input:checked+label{border-color:var(--gold);background:rgba(255,209,102,.13);box-shadow:0 0 25px rgba(255,209,102,.1)}
+button{width:100%;margin-top:22px;padding:16px;border:0;border-radius:16px;background:linear-gradient(90deg,#ff4d8d,#7c3aed,#2196f3);color:#fff;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 12px 35px rgba(124,58,237,.3)}
+button:hover{transform:translateY(-1px)}button:disabled{opacity:.6;cursor:wait}
+.msg{min-height:24px;margin-top:14px;font-weight:800}.ok{color:#8ff0b0}.err{color:#ff9aaa}
+.visual{min-height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.orbit{height:260px;display:grid;place-items:center;position:relative}
+.orbit .ring{position:absolute;border:1px solid rgba(255,255,255,.15);border-radius:50%;animation:spin 12s linear infinite}.r1{width:220px;height:220px}.r2{width:150px;height:150px;animation-duration:8s!important;animation-direction:reverse}
+.diya{font-size:80px;filter:drop-shadow(0 0 25px #ffd166);animation:pulse 1.8s ease-in-out infinite}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat div{padding:14px;border:1px solid var(--line);border-radius:18px;text-align:center;background:rgba(0,0,0,.18)}.stat b{display:block;font-size:25px;color:var(--gold)}
+footer{text-align:center;color:#877f91;padding:20px 0 45px;font-size:13px}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.12)}}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.hero{min-height:62vh}h1{letter-spacing:-3px}.card{padding:22px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">🇳🇵 7 DAYS • DEUSI BHAILO</span>
+    <h1><span class="gradient">ATTENDANCE</span><br>PORTAL</h1>
+    <div class="lights"><i></i><i></i><i></i><i></i><i></i></div>
+    <p>One beautiful place to record who came and who couldn't come. Submit from any phone — your attendance is saved in the shared online database.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="grid">
+    <div class="card">
+      <h2>🪔 Mark Attendance</h2>
+      <p class="sub">Only your registration form is visible to participants.</p>
+      <form id="form">
+        <label for="name">Full Name</label>
+        <input id="name" maxlength="100" autocomplete="name" placeholder="Enter your full name" required>
+
+        <label for="date">Attendance Day</label>
+        <input id="date" type="date" required>
+
+        <label>Attendance Status</label>
+        <div class="status">
+          <div><input id="came" type="radio" name="status" value="Came" checked><label for="came">🟢 I CAME</label></div>
+          <div><input id="notcame" type="radio" name="status" value="Not Came"><label for="notcame">🔴 NOT CAME</label></div>
+        </div>
+
+        <button id="submit">✨ SAVE MY ATTENDANCE</button>
+        <div id="msg" class="msg"></div>
+      </form>
+    </div>
+
+    <div class="card visual">
+      <div>
+        <h2>🔥 The 7-Day Circle</h2>
+        <p class="sub">Old records are automatically removed after 7 days.</p>
+      </div>
+      <div class="orbit">
+        <div class="ring r1"></div><div class="ring r2"></div>
+        <div class="diya">🪔</div>
+      </div>
+      <div class="stat">
+        <div><b>7</b><span>Days</span></div>
+        <div><b>∞</b><span>Phones</span></div>
+        <div><b>☁</b><span>Online</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Deusi Bhailo Attendance • Shared online database • 7-day history</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://uxjkgqmbioknwcdmswoi.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_SEpAfwRRxIALNjuiEUStfQ_hIiQeNdX";
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const form=document.getElementById("form");
+const msg=document.getElementById("msg");
+const submit=document.getElementById("submit");
+const dateInput=document.getElementById("date");
+
+// Browser-local date, suitable for the user's local day.
+const today = new Date();
+const yyyy=today.getFullYear(), mm=String(today.getMonth()+1).padStart(2,"0"), dd=String(today.getDate()).padStart(2,"0");
+dateInput.value=`${yyyy}-${mm}-${dd}`;
+dateInput.min=new Date(today.getTime()-6*86400000).toISOString().slice(0,10);
+dateInput.max=dateInput.value;
+
+form.addEventListener("submit",async(e)=>{
+  e.preventDefault();
+  msg.className="msg"; msg.textContent="";
+  submit.disabled=true; submit.textContent="SAVING...";
+  const name=document.getElementById("name").value.trim();
+  const attendance_date=dateInput.value;
+  const status=document.querySelector('input[name="status"]:checked').value;
+
+  const {error}=await db.from("deusi_bhailo_attendance").insert([{
+    name, attendance_date, status
+  }]);
+
+  if(error){
+    console.error(error);
+    msg.textContent=error.code==="23505"
+      ? "⚠️ This name is already registered for this day."
+      : "❌ Could not save: "+error.message;
+    msg.className="msg err";
+  }else{
+    msg.textContent="🎉 Attendance saved! See you at Deusi Bhailo!";
+    msg.className="msg ok";
+    form.reset();
+    dateInput.value=`${yyyy}-${mm}-${dd}`;
+    document.getElementById("came").checked=true;
+  }
+  submit.disabled=false; submit.textContent="✨ SAVE MY ATTENDANCE";
+});
+</script>
+</body>
+</html>
